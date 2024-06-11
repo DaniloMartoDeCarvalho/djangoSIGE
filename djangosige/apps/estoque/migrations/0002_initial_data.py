@@ -22,14 +22,15 @@ def load_fixture(apps, schema_editor):
             return apps.get_model(model_identifier)
         except (LookupError, TypeError):
             raise base.DeserializationError(
-                "Invalid model identifier: '%s'" % model_identifier)
+                "Invalid model identifier: '%s'" % model_identifier
+            )
 
     # Replace the _get_model() function on the module, so loaddata can utilize it.
     python._get_model = _get_model
 
     try:
         # Call loaddata command
-        call_command('loaddata', 'estoque_initial_data.json')
+        call_command("loaddata", "estoque_initial_data.json")
     finally:
         # Restore old _get_model() function
         python._get_model = old_get_model
@@ -37,7 +38,7 @@ def load_fixture(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('estoque', '0001_initial'),
+        ("estoque", "0001_initial"),
     ]
 
     operations = [
