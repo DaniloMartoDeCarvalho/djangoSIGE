@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url
-from . import views
 
-from djangosige.configs import DEBUG
+from djangoSIGE import DEBUG
+
+from . import views
 
 app_name = "base"
 urlpatterns = [

@@ -1,7 +1,7 @@
 import os
-from djangosige.configs import *
 import warnings
 
+from djangoSIGE import *
 
 warnings.filterwarnings(
     "ignore",
