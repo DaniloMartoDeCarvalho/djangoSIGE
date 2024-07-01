@@ -7,6 +7,8 @@ from dj_database_url import parse as dburl
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+APP_DIR = BASE_DIR / "djangosige"
+
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
@@ -31,7 +33,7 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS")
 # File uploads
 #######################################################################################
 MEDIA_URL = 'media/'
-MEDIA_ROOT = str(BASE_DIR / "media/")
+MEDIA_ROOT = str(APP_DIR / "media/")
 
 # Globalization
 #######################################################################################
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "djangosige.middleware.LoginRequiredMiddleware",
+    "djangosige.middleware.LoginRequiredMiddleware",
 ]
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -63,14 +65,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "djangosige.apps.base",
-    # "djangosige.apps.login",
-    # "djangosige.apps.cadastro",
-    # "djangosige.apps.vendas",
-    # "djangosige.apps.compras",
-    # "djangosige.apps.fiscal",
-    # "djangosige.apps.financeiro",
-    # "djangosige.apps.estoque",
+    "djangosige.apps.base",
+    "djangosige.apps.login",
+    "djangosige.apps.cadastro",
+    "djangosige.apps.vendas",
+    "djangosige.apps.compras",
+    "djangosige.apps.fiscal",
+    "djangosige.apps.financeiro",
+    "djangosige.apps.estoque",
 ]
 
 # Security
@@ -82,7 +84,7 @@ SECRET_KEY = config("SECRET_KEY")
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [str(BASE_DIR / "templates")],
+        "DIRS": [str(APP_DIR / "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -90,8 +92,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                # "djangosige.apps.base.context_version.sige_version",
-                # "djangosige.apps.login.context_user.foto_usuario",
+                "djangosige.apps.base.context_version.sige_version",
+                "djangosige.apps.login.context_user.foto_usuario",
             ],
         },
     },
@@ -137,6 +139,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
-    str(BASE_DIR / "static/"),
+    str(APP_DIR / "static/"),
 ]
 
